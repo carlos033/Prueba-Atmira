@@ -27,7 +27,6 @@ public class Controlador {
     @GetMapping
     @ResponseBody
     public DatosNasa obtenerDatos() {
-        DatosNasa datos = servicios.obtenerDatos();
-        return datos;
+        return servicios.obtenerDatos();
     }
 }

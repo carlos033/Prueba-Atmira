@@ -6,6 +6,7 @@
 package com.example.demo.modelo;
 
 import com.example.demo.modelo.nasa.Links;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,19 +18,21 @@ import java.util.List;
 public class DatosNasa implements Serializable {
 
     private static final long serialVersionUID = 11L;
-    /* tenemos 2 links uno con self y otro con 2 cosas mas como lo hago?*/
+    @JsonProperty("links")
     private Links links;
-    private int element_count;
-    private List<Near_earth_objects> Near_earth_objects;
+    @JsonProperty("element_count")
+    private int numElementos;
+    @JsonProperty("Near_earth_objects")
+    private List<Near_earth_objects> objetosCercanos;
 
-    public DatosNasa(Links links, int element_count, List<Near_earth_objects> Near_earth_objects) {
+    public DatosNasa(Links links, int numElementos, List<Near_earth_objects> objetosCercanos) {
         this.links = links;
-        this.element_count = element_count;
-        this.Near_earth_objects = Near_earth_objects;
+        this.numElementos = numElementos;
+        this.objetosCercanos = objetosCercanos;
     }
 
     public DatosNasa() {
-        Near_earth_objects = new ArrayList<>();
+        objetosCercanos = new ArrayList<>();
     }
 
     public Links getLinks() {
@@ -40,25 +43,25 @@ public class DatosNasa implements Serializable {
         this.links = links;
     }
 
-    public int getElement_count() {
-        return element_count;
+    public int getNumElementos() {
+        return numElementos;
     }
 
-    public void setElement_count(int element_count) {
-        this.element_count = element_count;
+    public void setNumElementos(int numElementos) {
+        this.numElementos = numElementos;
     }
 
-    public List<Near_earth_objects> getLNear_earth_objects() {
-        return Near_earth_objects;
+    public List<Near_earth_objects> objetosCercanos() {
+        return objetosCercanos;
     }
 
-    public void setNear_earth_objects(List<Near_earth_objects> Near_earth_objects) {
-        this.Near_earth_objects = Near_earth_objects;
+    public void setObjetosCercanos(List<Near_earth_objects> objetosCercanos) {
+        this.objetosCercanos = objetosCercanos;
     }
 
     @Override
     public String toString() {
-        return "DatosNasa{" + "links=" + links + ", element_count=" + element_count + ", Near_earth_objects=" + Near_earth_objects + '}';
+        return "DatosNasa{" + "links=" + links + ", element_count=" + numElementos + ", Near_earth_objects=" + objetosCercanos + '}';
     }
-    
+
 }

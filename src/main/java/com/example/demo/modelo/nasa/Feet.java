@@ -5,6 +5,7 @@
  */
 package com.example.demo.modelo.nasa;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 
 /**
@@ -14,36 +15,37 @@ import java.io.Serializable;
 public class Feet implements Serializable {
 
     private static final long serialVersionUID = 7L;
-    private double estimated_diameter_min;
-    private double estimated_diameter_max;
+    @JsonProperty("estimated_diameter_min")
+    private double diametroMin;
+    @JsonProperty("estimated_diameter_max")
+    private double diametroMax;
 
-    public Feet(double estimated_diameter_min, double estimated_diameter_max) {
-        this.estimated_diameter_min = estimated_diameter_min;
-        this.estimated_diameter_max = estimated_diameter_max;
+    public Feet(double diametroMin, double diametroMax) {
+        this.diametroMin = diametroMin;
+        this.diametroMax = diametroMax;
     }
 
     public Feet() {
     }
 
-    public double getEstimated_diameter_min() {
-        return estimated_diameter_min;
+    public double getDiametroMin() {
+        return diametroMin;
     }
 
-    public void setEstimated_diameter_min(double estimated_diameter_min) {
-        this.estimated_diameter_min = estimated_diameter_min;
+    public void setDiametroMin(double diametroMin) {
+        this.diametroMin = diametroMin;
     }
 
-    public double getEstimated_diameter_max() {
-        return estimated_diameter_max;
+    public double getDiametroMax() {
+        return diametroMax;
     }
 
-    public void setEstimated_diameter_max(double estimated_diameter_max) {
-        this.estimated_diameter_max = estimated_diameter_max;
+    public void setDiametroMax(double diametroMax) {
+        this.diametroMax = diametroMax;
     }
 
     @Override
     public String toString() {
-        return "Feet{" + "estimated_diameter_min=" + estimated_diameter_min + ", estimated_diameter_max=" + estimated_diameter_max + '}';
+        return "Feet{" + "diametroMin=" + diametroMin + ", diametroMax=" + diametroMax + '}';
     }
-
 }

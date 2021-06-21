@@ -6,7 +6,9 @@
 package com.example.demo.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -15,22 +17,23 @@ import java.util.Date;
 public class Near_earth_objects implements Serializable {
 
     private static final long serialVersionUID = 12;
-    /* tiene una fecha y algo mas dentro que le meto?*/
     private Date fecha;
-    private DatosAsteroides datos;
+    private List<DatosAsteroides> datos;
 
-    public Near_earth_objects(DatosAsteroides datos) {
+    public Near_earth_objects(Date fecha, List<DatosAsteroides> datos) {
+        this.fecha = fecha;
         this.datos = datos;
     }
 
     public Near_earth_objects() {
+        datos = new ArrayList<>();
     }
 
-    public DatosAsteroides getDatos() {
+    public List<DatosAsteroides> getDatos() {
         return datos;
     }
 
-    public void setDatos(DatosAsteroides datos) {
+    public void setDatos(List<DatosAsteroides> datos) {
         this.datos = datos;
     }
 

@@ -5,6 +5,7 @@
  */
 package com.example.demo.modelo.nasa;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 
 /**
@@ -14,16 +15,20 @@ import java.io.Serializable;
 public class Miss_distance implements Serializable {
 
     private static final long serialVersionUID = 9L;
+    @JsonProperty("astronomical")
     private double astronomical;
+    @JsonProperty("lunar;")
     private double lunar;
-    private double kilometers;
-    private double miles;
+    @JsonProperty("kilometers")
+    private double kilometros;
+    @JsonProperty("miles")
+    private double millas;
 
-    public Miss_distance(double astronomical, double lunar, double kilometers, double miles) {
+    public Miss_distance(double astronomical, double lunar, double kilometros, double millas) {
         this.astronomical = astronomical;
         this.lunar = lunar;
-        this.kilometers = kilometers;
-        this.miles = miles;
+        this.kilometros = kilometros;
+        this.millas = millas;
     }
 
     public Miss_distance() {
@@ -45,25 +50,24 @@ public class Miss_distance implements Serializable {
         this.lunar = lunar;
     }
 
-    public double getKilometers() {
-        return kilometers;
+    public double getKilometros() {
+        return kilometros;
     }
 
-    public void setKilometers(double kilometers) {
-        this.kilometers = kilometers;
+    public void setKilometros(double kilometros) {
+        this.kilometros = kilometros;
     }
 
-    public double getMiles() {
-        return miles;
+    public double getMillas() {
+        return millas;
     }
 
-    public void setMiles(double miles) {
-        this.miles = miles;
+    public void setMillas(double millas) {
+        this.millas = millas;
     }
 
     @Override
     public String toString() {
-        return "Miss_distance{" + "astronomical=" + astronomical + ", lunar=" + lunar + ", kilometers=" + kilometers + ", miles=" + miles + '}';
+        return "Miss_distance{" + "astronomical=" + astronomical + ", lunar=" + lunar + ", kilometros=" + kilometros + ", millas=" + millas + '}';
     }
-
 }

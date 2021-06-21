@@ -5,6 +5,7 @@
  */
 package com.example.demo.modelo.nasa;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -15,47 +16,53 @@ import java.util.Date;
 public class Close_approach_data implements Serializable {
 
     private static final long serialVersionUID = 7L;
-    private Date close_approach_data;
-    private Date close_approach_date_full;
-    private int epoch_date_close_approach;
+    @JsonProperty("close_approach_data")
+    private Date datosAproximacion;
+    @JsonProperty("close_approach_date_full")
+    private Date datosAproximacionCompleto;
+    @JsonProperty("epoch_date_close_approach")
+    private int aproximacionCercana;
+    @JsonProperty("relative_velocity")
     private Relative_velocity velocidades;
+    @JsonProperty("miss_distance")
     private Miss_distance distancias;
-    private String orbiting_body;
+    @JsonProperty("orbiting_body")
+    private String cuerpoOrbital;
 
-    public Close_approach_data(Date close_approach_data, Date close_approach_date_full, int epoch_date_close_approach, Relative_velocity velocidades, Miss_distance distancias, String orbiting_body) {
-        this.close_approach_data = close_approach_data;
-        this.close_approach_date_full = close_approach_date_full;
-        this.epoch_date_close_approach = epoch_date_close_approach;
+    public Close_approach_data(Date datosAproximacion, Date datosAproximacionCompleto, int aproximacionCercana, Relative_velocity velocidades, Miss_distance distancias, String cuerpoOrbital) {
+        this.datosAproximacion = datosAproximacion;
+        this.datosAproximacionCompleto = datosAproximacionCompleto;
+        this.aproximacionCercana = aproximacionCercana;
         this.velocidades = velocidades;
         this.distancias = distancias;
-        this.orbiting_body = orbiting_body;
+        this.cuerpoOrbital = cuerpoOrbital;
     }
 
     public Close_approach_data() {
     }
 
-    public Date getClose_approach_data() {
-        return close_approach_data;
+    public Date getDatosAproximacion() {
+        return datosAproximacion;
     }
 
-    public void setClose_approach_data(Date close_approach_data) {
-        this.close_approach_data = close_approach_data;
+    public void setDatosAproximacion(Date datosAproximacion) {
+        this.datosAproximacion = datosAproximacion;
     }
 
-    public Date getClose_approach_date_full() {
-        return close_approach_date_full;
+    public Date getDatosAproximacionCompleto() {
+        return datosAproximacionCompleto;
     }
 
-    public void setClose_approach_date_full(Date close_approach_date_full) {
-        this.close_approach_date_full = close_approach_date_full;
+    public void setDatosAproximacionCompleto(Date datosAproximacionCompleto) {
+        this.datosAproximacionCompleto = datosAproximacionCompleto;
     }
 
-    public int getEpoch_date_close_approach() {
-        return epoch_date_close_approach;
+    public int getAproximacionCercana() {
+        return aproximacionCercana;
     }
 
-    public void setEpoch_date_close_approach(int epoch_date_close_approach) {
-        this.epoch_date_close_approach = epoch_date_close_approach;
+    public void setAproximacionCercana(int aproximacionCercana) {
+        this.aproximacionCercana = aproximacionCercana;
     }
 
     public Relative_velocity getVelocidades() {
@@ -74,12 +81,16 @@ public class Close_approach_data implements Serializable {
         this.distancias = distancias;
     }
 
-    public String getOrbiting_body() {
-        return orbiting_body;
+    public String getCuerpoOrbital() {
+        return cuerpoOrbital;
     }
 
-    public void setOrbiting_body(String orbiting_body) {
-        this.orbiting_body = orbiting_body;
+    public void setCuerpoOrbital(String cuerpoOrbital) {
+        this.cuerpoOrbital = cuerpoOrbital;
     }
 
+    @Override
+    public String toString() {
+        return "Close_approach_data{" + "datosAproximacion=" + datosAproximacion + ", datosAproximacionCompleto=" + datosAproximacionCompleto + ", aproximacionCercana=" + aproximacionCercana + ", velocidades=" + velocidades + ", distancias=" + distancias + ", cuerpoOrbital=" + cuerpoOrbital + '}';
+    }
 }

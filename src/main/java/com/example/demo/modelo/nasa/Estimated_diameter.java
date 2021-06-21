@@ -5,6 +5,7 @@
  */
 package com.example.demo.modelo.nasa;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 
 /**
@@ -14,9 +15,13 @@ import java.io.Serializable;
 public class Estimated_diameter implements Serializable {
 
     private static final long serialVersionUID = 3L;
+    @JsonProperty("kilometers")
     private Kilometers kilometros;
+    @JsonProperty("meters")
     private Meters metros;
+    @JsonProperty("miles")
     private Miles millas;
+    @JsonProperty("feet")
     private Feet pies;
 
     public Estimated_diameter(Kilometers kilometros, Meters metros, Miles millas, Feet pies) {

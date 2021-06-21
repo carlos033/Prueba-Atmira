@@ -5,6 +5,7 @@
  */
 package com.example.demo.modelo;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 
 /**
@@ -14,6 +15,7 @@ import java.io.Serializable;
 public class AsteroidesXFecha implements Serializable {
 
     private static final long serialVersionUID = 10L;
+    @JsonProperty("datos")
     private DatosAsteroides datos;
 
     public AsteroidesXFecha(DatosAsteroides datos) {
