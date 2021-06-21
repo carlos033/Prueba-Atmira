@@ -5,6 +5,7 @@
  */
 package com.example.demo.modelo.nasa;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 
@@ -12,6 +13,7 @@ import java.io.Serializable;
  *
  * @author ck
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Feet implements Serializable {
 
     private static final long serialVersionUID = 7L;

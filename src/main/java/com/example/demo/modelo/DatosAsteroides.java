@@ -9,6 +9,7 @@ import com.example.demo.modelo.nasa.Close_approach_data;
 import com.example.demo.modelo.nasa.Estimated_diameter;
 import com.example.demo.modelo.nasa.LinkObjetos;
 import com.example.demo.modelo.nasa.Links;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 
@@ -16,6 +17,7 @@ import java.io.Serializable;
  *
  * @author ck
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class DatosAsteroides implements Serializable {
 
     private static final long serialVersionUID = 2L;
@@ -38,20 +40,7 @@ public class DatosAsteroides implements Serializable {
     @JsonProperty("is_sentry_object")
     private boolean IsSentryObject;
 
-    public DatosAsteroides(LinkObjetos links, int id, String nombre, String url, double magnitudes, Estimated_diameter diametro, boolean esPeligroso, Close_approach_data datosAproximacion, boolean IsSentryObject) {
-        this.links = links;
-        this.id = id;
-        this.nombre = nombre;
-        this.url = url;
-        this.magnitudes = magnitudes;
-        this.diametro = diametro;
-        this.esPeligroso = esPeligroso;
-        this.datosAproximacion = datosAproximacion;
-        this.IsSentryObject = IsSentryObject;
-    }
 
-    public DatosAsteroides() {
-    }
 
     public LinkObjetos getLinks() {
         return links;

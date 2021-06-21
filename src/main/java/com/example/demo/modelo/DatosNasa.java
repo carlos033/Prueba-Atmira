@@ -6,15 +6,18 @@
 package com.example.demo.modelo;
 
 import com.example.demo.modelo.nasa.Links;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
  *
  * @author ck
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class DatosNasa implements Serializable {
 
     private static final long serialVersionUID = 11L;
@@ -22,19 +25,10 @@ public class DatosNasa implements Serializable {
     private Links links;
     @JsonProperty("element_count")
     private int numElementos;
-    @JsonProperty("Near_earth_objects")
-    private List<Near_earth_objects> objetosCercanos;
+    @JsonProperty("near_earth_objects")
+    private Near_earth_objects objetosCercanos;
 
-    public DatosNasa(Links links, int numElementos, List<Near_earth_objects> objetosCercanos) {
-        this.links = links;
-        this.numElementos = numElementos;
-        this.objetosCercanos = objetosCercanos;
-    }
-
-    public DatosNasa() {
-        objetosCercanos = new ArrayList<>();
-    }
-
+    
     public Links getLinks() {
         return links;
     }
@@ -51,11 +45,11 @@ public class DatosNasa implements Serializable {
         this.numElementos = numElementos;
     }
 
-    public List<Near_earth_objects> objetosCercanos() {
+    public Near_earth_objects objetosCercanos() {
         return objetosCercanos;
     }
 
-    public void setObjetosCercanos(List<Near_earth_objects> objetosCercanos) {
+    public void setObjetosCercanos(Near_earth_objects objetosCercanos) {
         this.objetosCercanos = objetosCercanos;
     }
 
@@ -63,5 +57,7 @@ public class DatosNasa implements Serializable {
     public String toString() {
         return "DatosNasa{" + "links=" + links + ", element_count=" + numElementos + ", Near_earth_objects=" + objetosCercanos + '}';
     }
+    
+    
 
 }
