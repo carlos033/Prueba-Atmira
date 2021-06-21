@@ -6,15 +6,17 @@
 package com.example.demo.modelo;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
  * @author ck
  */
-public class Near_earth_objects  implements Serializable {
+public class Near_earth_objects implements Serializable {
 
     private static final long serialVersionUID = 12;
     /* tiene una fecha y algo mas dentro que le meto?*/
+    private Date fecha;
     private DatosAsteroides datos;
 
     public Near_earth_objects(DatosAsteroides datos) {
@@ -32,9 +34,16 @@ public class Near_earth_objects  implements Serializable {
         this.datos = datos;
     }
 
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
     @Override
     public String toString() {
-        return "Near_earth_objects{" + "datos=" + datos + '}';
+        return "Near_earth_objects{" + "fecha=" + fecha + ", datos=" + datos + '}';
     }
-    
 }

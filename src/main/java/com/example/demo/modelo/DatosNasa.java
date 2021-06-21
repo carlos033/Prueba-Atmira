@@ -7,6 +7,8 @@ package com.example.demo.modelo;
 
 import com.example.demo.modelo.nasa.Links;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -18,15 +20,16 @@ public class DatosNasa implements Serializable {
     /* tenemos 2 links uno con self y otro con 2 cosas mas como lo hago?*/
     private Links links;
     private int element_count;
-    private Near_earth_objects near_earth_objects;
+    private List<Near_earth_objects> Near_earth_objects;
 
-    public DatosNasa(Links links, int element_count, Near_earth_objects near_earth_objects) {
+    public DatosNasa(Links links, int element_count, List<Near_earth_objects> Near_earth_objects) {
         this.links = links;
         this.element_count = element_count;
-        this.near_earth_objects = near_earth_objects;
+        this.Near_earth_objects = Near_earth_objects;
     }
 
     public DatosNasa() {
+        Near_earth_objects = new ArrayList<>();
     }
 
     public Links getLinks() {
@@ -45,20 +48,17 @@ public class DatosNasa implements Serializable {
         this.element_count = element_count;
     }
 
-    public Near_earth_objects getNear_earth_objects() {
-        return near_earth_objects;
+    public List<Near_earth_objects> getLNear_earth_objects() {
+        return Near_earth_objects;
     }
 
-    public void setNear_earth_objects(Near_earth_objects near_earth_objects) {
-        this.near_earth_objects = near_earth_objects;
+    public void setNear_earth_objects(List<Near_earth_objects> Near_earth_objects) {
+        this.Near_earth_objects = Near_earth_objects;
     }
 
     @Override
     public String toString() {
-        return "DatosNasa{" + "links=" + links + ", element_count=" + element_count + ", near_earth_objects=" + near_earth_objects + '}';
+        return "DatosNasa{" + "links=" + links + ", element_count=" + element_count + ", Near_earth_objects=" + Near_earth_objects + '}';
     }
-
-}
-
     
-
+}
