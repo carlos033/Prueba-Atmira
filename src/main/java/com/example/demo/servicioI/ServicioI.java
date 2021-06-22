@@ -8,6 +8,7 @@ package com.example.demo.servicioI;
 import com.example.demo.errores.ExcepcionServicio;
 import com.example.demo.modelo.Asteroide;
 import com.example.demo.modelo.DatosNasa;
+import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -18,6 +19,6 @@ public interface ServicioI {
 
     public DatosNasa obtenerDatos();
 
-    public List<Asteroide> obtenerDatosAsteroides(String planeta) throws ExcepcionServicio;
+    public List<Asteroide> obtenerDatosAsteroides(String planeta) throws ExcepcionServicio, ParseException;
 
 }

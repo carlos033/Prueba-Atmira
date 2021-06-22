@@ -12,9 +12,12 @@ import com.example.demo.modelo.DatosNasa;
 import com.example.demo.modelo.nasa.CloseApproachData;
 import com.example.demo.modelo.nasa.NearEarthObjectsDetails;
 import com.example.demo.servicioI.ServicioI;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +34,12 @@ public class Servicio implements ServicioI {
 
     @Override
     public DatosNasa obtenerDatos() {
-        final String uri = "https://api.nasa.gov/neo/rest/v1/feed?start_date=2020-09-09&end_date=2020-09-16&api_key=DEMO_KEY";
+        String hoy = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+        LocalDate date = LocalDate.now();
+        date = date.plusDays(7);
+        Date hoyEn7DiasFecha = java.util.Date.from(date.atStartOfDay(ZoneId.of("Europe/Madrid")).toInstant());
+        String hoyEn7Dias = new SimpleDateFormat("yyyy-MM-dd").format(hoyEn7DiasFecha);
+        final String uri = "https://api.nasa.gov/neo/rest/v1/feed?start_date=" + hoy + "&end_date=" + hoyEn7Dias + "&api_key=zdUP8ElJv1cehFM0rsZVSQN7uBVxlDnu4diHlLSb";
         RestTemplate restTemplate = new RestTemplate();
         DatosNasa result = restTemplate.getForObject(uri, DatosNasa.class);
         return result;
@@ -47,8 +55,10 @@ public class Servicio implements ServicioI {
         for (Map.Entry<String, List<NearEarthObjectsDetails>> entry : listaAsteroides.entrySet()) {
             for (NearEarthObjectsDetails item : entry.getValue()) {
                 if (item.isIs_potentially_hazardous_asteroid() == true) {
-                    for(CloseApproachData datosAproximacion:item.getDatosAproximacion()){
-                        if(datosAproximacion)
+                    for (CloseApproachData datosAproximacion : item.getDatosAproximacion()) {
+                        if (datosAproximacion) {
+                            
+                        }
                     }
                     item.getDatosAproximacion().stream().filter(data -> (data.getCuerpoOrbital().compareToIgnoreCase(planeta) == 0)).forEachOrdered((CloseApproachData data) -> {
                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-mm-dd");
