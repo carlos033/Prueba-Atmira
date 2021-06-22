@@ -49,7 +49,7 @@ public class Servicio implements ServicioI {
             for (NearEarthObjectsDetails item : entry.getValue()) {
                 if (item.isIs_potentially_hazardous_asteroid() == true) {
                     item.getDatosAproximacion().stream().filter(data -> (data.getCuerpoOrbital().compareToIgnoreCase(planeta) == 0)).forEachOrdered(data -> {
-                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/mm/dd");
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-mm-dd");
                         String date = data.getDatosAproximacion();
                         LocalDate date1 = LocalDate.parse(date, formatter);
                         if (date1.isBefore(today.plusDays(7)) && date1.isAfter(today)) {
