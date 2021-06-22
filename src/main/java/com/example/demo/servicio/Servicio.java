@@ -48,39 +48,27 @@ public class Servicio implements ServicioI {
 
     @Override
     public List<Asteroide> obtenerDatosAsteroides(String planeta) throws ExcepcionServicio, ParseException {
-        List<Asteroide> listaObjetos = new ArrayList<>();
-        LocalDate today = LocalDate.now();
-        Map<String, List<NearEarthObjectsDetails>> listaAsteroides = new HashMap<>();
-        DatosNasa datos = obtenerDatos();
-        listaAsteroides = datos.getListaObjetos();
+        List<Asteroide> asteroideList = new ArrayList<>();
+        Map<String, List<NearEarthObjectsDetails>> listaAsteroides = obtenerDatos().getListaObjetos();
         for (Map.Entry<String, List<NearEarthObjectsDetails>> entry : listaAsteroides.entrySet()) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-mm-dd");
-            String date = entry.getKey();
-            Date formatted = new SimpleDateFormat("yyyy-mm-dd").parse(date);
-            LocalDate date1 = formatted.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            if (date1.isBefore(today.plusDays(7)) && date1.isAfter(today)) {
-                for (NearEarthObjectsDetails item : entry.getValue()) {
-                    if (item.isIs_potentially_hazardous_asteroid() == true) {
-                        for (CloseApproachData data : item.getDatosAproximacion()) {
-                            if (data.getCuerpoOrbital().compareToIgnoreCase(planeta) == 0) {
-                                double diametro = (item.getDiametro().getKilometros().getDiametroMax()
-                                        + item.getDiametro().getKilometros().getDiametroMin()) / 2;
-                                Asteroide asteroide = new Asteroide();
-                                asteroide.setFecha(date1);
-                                asteroide.setDiametro(diametro);
-                                asteroide.setNombre(item.getName());
-                                asteroide.setVelocidad(data.getVelocidades().getKmXH());
-                                asteroide.setPlaneta(planeta);
-                                listaObjetos.add(asteroide);
-                            }
-                        }
+            for (NearEarthObjectsDetails item : entry.getValue()) {
+                for (CloseApproachData datosAprox : item.getDatosAproximacion()) {
+                    if (datosAprox.getCuerpoOrbital().compareToIgnoreCase(planeta) == 0 && item.isIs_potentially_hazardous_asteroid()) {
+                        Asteroide asteroide = new Asteroide();
+                        asteroide.setNombre(item.getName());
+                        asteroide.setDiametro((item.getDiametro().getKilometros().getDiametroMax() + item.getDiametro().getKilometros().getDiametroMin()) / 2);
+                        Date dateFormatted = new SimpleDateFormat("yyyy-MM-dd").parse(datosAprox.getDatosAproximacion());
+                        asteroide.setFecha(dateFormatted.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+                        asteroide.setPlaneta(datosAprox.getCuerpoOrbital());
+                        asteroide.setVelocidad(datosAprox.getVelocidades().getKmXH());
+                        asteroideList.add(asteroide);
+                    } else {
+                        throw new ExcepcionServicio("El planeta no existe o no tiene asteroides orbitando en los proximos 7 dias o ninguno es peligroso");
                     }
                 }
             }
         }
-        if (listaObjetos.isEmpty()) {
-            throw new ExcepcionServicio("El planeta no existe o no tiene asteroides orbitando en los proximos 7 dias");
-        }
-        return listaObjetos;
+        return asteroideList;
     }
+
 }
