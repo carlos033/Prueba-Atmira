@@ -18,6 +18,6 @@ public interface ServicioI {
 
     public DatosNasa obtenerDatos();
 
-    public List<Asteroide> obtenerDatosAsteroides() throws ExcepcionServicio;
+    public List<Asteroide> obtenerDatosAsteroides(String planeta) throws ExcepcionServicio;
 
 }
