@@ -5,10 +5,11 @@
  */
 package com.example.demo.modelo;
 
-import com.example.demo.modelo.nasa.Close_approach_data;
-import com.example.demo.modelo.nasa.Estimated_diameter;
+import com.example.demo.modelo.nasa.CloseApproachData;
+import com.example.demo.modelo.nasa.EstimatedDiameter;
 import com.example.demo.modelo.nasa.LinkObjetos;
 import com.example.demo.modelo.nasa.Links;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
@@ -32,15 +33,30 @@ public class DatosAsteroides implements Serializable {
     @JsonProperty("absolute_magnitude_h")
     private double magnitudes;
     @JsonProperty("estimated_diameter")
-    private Estimated_diameter diametro;
+    private EstimatedDiameter diametro;
     @JsonProperty("is_potentially_hazardous_asteroid")
     private boolean esPeligroso;
     @JsonProperty("close_approach_data")
-    private Close_approach_data datosAproximacion;
+    private CloseApproachData datosAproximacion;
     @JsonProperty("is_sentry_object")
     private boolean IsSentryObject;
 
+    @JsonCreator
+    public DatosAsteroides(LinkObjetos links, int id, String nombre, String url, double magnitudes, EstimatedDiameter diametro, boolean esPeligroso, CloseApproachData datosAproximacion, boolean IsSentryObject) {
+        this.links = links;
+        this.id = id;
+        this.nombre = nombre;
+        this.url = url;
+        this.magnitudes = magnitudes;
+        this.diametro = diametro;
+        this.esPeligroso = esPeligroso;
+        this.datosAproximacion = datosAproximacion;
+        this.IsSentryObject = IsSentryObject;
+    }
 
+    @JsonCreator
+    public DatosAsteroides() {
+    }
 
     public LinkObjetos getLinks() {
         return links;
@@ -82,11 +98,11 @@ public class DatosAsteroides implements Serializable {
         this.magnitudes = magnitudes;
     }
 
-    public Estimated_diameter getDiametro() {
+    public EstimatedDiameter getDiametro() {
         return diametro;
     }
 
-    public void setDiametro(Estimated_diameter diametro) {
+    public void setDiametro(EstimatedDiameter diametro) {
         this.diametro = diametro;
     }
 
@@ -98,11 +114,11 @@ public class DatosAsteroides implements Serializable {
         this.esPeligroso = esPeligroso;
     }
 
-    public Close_approach_data getDatosAproximacion() {
+    public CloseApproachData getDatosAproximacion() {
         return datosAproximacion;
     }
 
-    public void setDatosAproximacion(Close_approach_data datosAproximacion) {
+    public void setDatosAproximacion(CloseApproachData datosAproximacion) {
         this.datosAproximacion = datosAproximacion;
     }
 

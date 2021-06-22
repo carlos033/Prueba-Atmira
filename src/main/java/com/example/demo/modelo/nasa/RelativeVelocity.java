@@ -14,7 +14,7 @@ import java.io.Serializable;
  * @author ck
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Relative_velocity implements Serializable {
+public class RelativeVelocity implements Serializable {
 
     private static final long serialVersionUID = 8L;
     @JsonProperty("kilometers_per_second")
@@ -24,13 +24,13 @@ public class Relative_velocity implements Serializable {
     @JsonProperty("miles_per_hour")
     private double mXH;
 
-    public Relative_velocity(double kmXSeg, double kmXH, double mXH) {
+    public RRelativeVelocitydouble kmXSeg, double kmXH, double mXH) {
         this.kmXSeg = kmXSeg;
         this.kmXH = kmXH;
         this.mXH = mXH;
     }
 
-    public Relative_velocity() {
+    public ReRelativeVelocity {
     }
 
     public double getKmXSeg() {

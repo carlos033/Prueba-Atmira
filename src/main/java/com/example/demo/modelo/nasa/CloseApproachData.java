@@ -15,7 +15,7 @@ import java.util.Date;
  * @author ck
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Close_approach_data implements Serializable {
+public class CloseApproachData implements Serializable {
 
     private static final long serialVersionUID = 7L;
     @JsonProperty("close_approach_data")
@@ -25,13 +25,13 @@ public class Close_approach_data implements Serializable {
     @JsonProperty("epoch_date_close_approach")
     private int aproximacionCercana;
     @JsonProperty("relative_velocity")
-    private Relative_velocity velocidades;
+    private RelativeVelocity velocidades;
     @JsonProperty("miss_distance")
-    private Miss_distance distancias;
+    private MissDistance distancias;
     @JsonProperty("orbiting_body")
     private String cuerpoOrbital;
 
-    public Close_approach_data(Date datosAproximacion, Date datosAproximacionCompleto, int aproximacionCercana, Relative_velocity velocidades, Miss_distance distancias, String cuerpoOrbital) {
+    public CloseApproachData(Date datosAproximacion, Date datosAproximacionCompleto, int aproximacionCercana, RelativeVelocity velocidades, MissDistance distancias, String cuerpoOrbital) {
         this.datosAproximacion = datosAproximacion;
         this.datosAproximacionCompleto = datosAproximacionCompleto;
         this.aproximacionCercana = aproximacionCercana;
@@ -40,7 +40,7 @@ public class Close_approach_data implements Serializable {
         this.cuerpoOrbital = cuerpoOrbital;
     }
 
-    public Close_approach_data() {
+    public CloseApproachData() {
     }
 
     public Date getDatosAproximacion() {
@@ -67,19 +67,19 @@ public class Close_approach_data implements Serializable {
         this.aproximacionCercana = aproximacionCercana;
     }
 
-    public Relative_velocity getVelocidades() {
+    public RelativeVelocity getVelocidades() {
         return velocidades;
     }
 
-    public void setVelocidades(Relative_velocity velocidades) {
+    public void setVelocidades(RelativeVelocity velocidades) {
         this.velocidades = velocidades;
     }
 
-    public Miss_distance getDistancias() {
+    public MissDistance getDistancias() {
         return distancias;
     }
 
-    public void setDistancias(Miss_distance distancias) {
+    public void setDistancias(MissDistance distancias) {
         this.distancias = distancias;
     }
 

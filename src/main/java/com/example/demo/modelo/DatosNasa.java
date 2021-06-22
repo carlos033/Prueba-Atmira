@@ -6,6 +6,7 @@
 package com.example.demo.modelo;
 
 import com.example.demo.modelo.nasa.Links;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -26,9 +27,19 @@ public class DatosNasa implements Serializable {
     @JsonProperty("element_count")
     private int numElementos;
     @JsonProperty("near_earth_objects")
-    private Near_earth_objects objetosCercanos;
+    private ObjetosCercanosTierra objetosCercanos;
 
-    
+    @JsonCreator
+    public DatosNasa(Links links, int numElementos, ObjetosCercanosTierra objetosCercanos) {
+        this.links = links;
+        this.numElementos = numElementos;
+        this.objetosCercanos = objetosCercanos;
+    }
+
+    @JsonCreator
+    public DatosNasa() {
+    }
+
     public Links getLinks() {
         return links;
     }
@@ -45,11 +56,11 @@ public class DatosNasa implements Serializable {
         this.numElementos = numElementos;
     }
 
-    public Near_earth_objects objetosCercanos() {
+    public ObjetosCercanosTierra objetosCercanos() {
         return objetosCercanos;
     }
 
-    public void setObjetosCercanos(Near_earth_objects objetosCercanos) {
+    public void setObjetosCercanos(ObjetosCercanosTierra objetosCercanos) {
         this.objetosCercanos = objetosCercanos;
     }
 
@@ -57,7 +68,5 @@ public class DatosNasa implements Serializable {
     public String toString() {
         return "DatosNasa{" + "links=" + links + ", element_count=" + numElementos + ", Near_earth_objects=" + objetosCercanos + '}';
     }
-    
-    
 
 }

@@ -14,7 +14,7 @@ import java.io.Serializable;
  * @author ck
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Miss_distance implements Serializable {
+public class MissDistance implements Serializable {
 
     private static final long serialVersionUID = 9L;
     @JsonProperty("astronomical")
@@ -26,14 +26,14 @@ public class Miss_distance implements Serializable {
     @JsonProperty("miles")
     private double millas;
 
-    public Miss_distance(double astronomical, double lunar, double kilometros, double millas) {
+    public MissDistance(double astronomical, double lunar, double kilometros, double millas) {
         this.astronomical = astronomical;
         this.lunar = lunar;
         this.kilometros = kilometros;
         this.millas = millas;
     }
 
-    public Miss_distance() {
+    public MissDistance() {
     }
 
     public double getAstronomical() {

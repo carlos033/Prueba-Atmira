@@ -14,7 +14,7 @@ import java.io.Serializable;
  * @author ck
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Estimated_diameter implements Serializable {
+public class EstimatedDiameter implements Serializable {
 
     private static final long serialVersionUID = 3L;
     @JsonProperty("kilometers")
@@ -26,14 +26,14 @@ public class Estimated_diameter implements Serializable {
     @JsonProperty("feet")
     private Feet pies;
 
-    public Estimated_diameter(Kilometers kilometros, Meters metros, Miles millas, Feet pies) {
+    public EstimatedDiameter(Kilometers kilometros, Meters metros, Miles millas, Feet pies) {
         this.kilometros = kilometros;
         this.metros = metros;
         this.millas = millas;
         this.pies = pies;
     }
 
-    public Estimated_diameter() {
+    public EstimatedDiameter() {
     }
 
     public Kilometers getKilometros() {

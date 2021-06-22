@@ -5,6 +5,7 @@
  */
 package com.example.demo.modelo;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
@@ -17,25 +18,28 @@ import java.util.List;
  * @author ck
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Near_earth_objects implements Serializable {
+public class ObjetosCercanosTierra implements Serializable {
 
     private static final long serialVersionUID = 12;
     private Date fecha;
-    private DatosAsteroides[] datos;
+    List<DatosAsteroides> listaDatos;
 
-    public Near_earth_objects(){}
-    
-    public Near_earth_objects(Date fecha, DatosAsteroides[] datos) {
+    @JsonCreator
+    public ObjetosCercanosTierra() {
+    }
+
+    @JsonCreator
+     public ObjetosCercanosTierra(Date fecha, List<DatosAsteroides> listaDatos) {
         this.fecha = fecha;
-        this.datos = datos;
+        this.listaDatos = listaDatos;
     }
 
-    public DatosAsteroides[] getDatos() {
-        return datos;
+    public List<DatosAsteroides> getListaDatos() {
+        return listaDatos;
     }
 
-    public void setDatos(DatosAsteroides[] datos) {
-        this.datos = datos;
+    public void setListaDatos(List<DatosAsteroides> listaDatos) {
+        this.listaDatos = listaDatos;
     }
 
     public Date getFecha() {
@@ -48,12 +52,7 @@ public class Near_earth_objects implements Serializable {
 
     @Override
     public String toString() {
-        return "Near_earth_objects{" + "fecha=" + fecha + ", datos=" + datos + '}';
+        return "Near_earth_objects{" + "fecha=" + fecha + ", listaDatos=" + listaDatos + '}';
     }
-    
-    @JsonIgnore
-    public List<DatosAsteroides> datosArray() {
-        List<DatosAsteroides> listaDatos = Arrays.asList(getDatos());
-        return listaDatos;
-    }
+   
 }
