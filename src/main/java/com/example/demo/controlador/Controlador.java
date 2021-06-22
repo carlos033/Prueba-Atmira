@@ -32,7 +32,7 @@ public class Controlador {
     @Autowired
     private ServicioI servicios;
 
-    @GetMapping
+    @GetMapping("/{planeta")
     @ResponseBody
     public List<Asteroide> obtenerDatosAsteroides(String planeta) {
         List<Asteroide> listaObjetos = new ArrayList<>();
