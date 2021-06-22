@@ -6,6 +6,7 @@
 package com.example.demo.servicio;
 
 import com.example.demo.errores.ExcepcionServicio;
+import com.example.demo.modelo.Asteroide;
 import javax.transaction.Transactional;
 import com.example.demo.modelo.DatosNasa;
 import com.example.demo.modelo.nasa.CloseApproachData;
@@ -48,18 +49,23 @@ public class Servicio implements ServicioI {
             LocalDate date1 = LocalDate.parse(date, formatter);
             if (date1.isBefore(today.plusDays(7)) && date1.isAfter(today)) {
                 for (NearEarthObjectsDetails item : entry.getValue()) {
-                    if(item.isIs_potentially_hazardous_asteroid()==true){
-                    for (CloseApproachData data : item.getDatosAproximacion()) {
-                        if (data.getCuerpoOrbital().compareToIgnoreCase(planeta) == 0) {
-                          double diametro = (item.getDiametro().getKilometros().getDiametroMax() +
-                                  item.getDiametro().getKilometros().getDiametroMin())/2;
-                        } else {
-                            throw new ExcepcionServicio("El planeta no existe o no tiene asteroides orbitando en los proximos 7 dias");
+                    if (item.isIs_potentially_hazardous_asteroid() == true) {
+                        for (CloseApproachData data : item.getDatosAproximacion()) {
+                            if (data.getCuerpoOrbital().compareToIgnoreCase(planeta) == 0) {
+                                double diametro = (item.getDiametro().getKilometros().getDiametroMax()
+                                        + item.getDiametro().getKilometros().getDiametroMin()) / 2;
+                                Asteroide a = new Asteroide();
+                                a.setFecha(date);
+                                a.setDiametro(diametro);
+                            } else {
+                                throw new ExcepcionServicio("El planeta no existe o no tiene asteroides orbitando en los proximos 7 dias");
+                            }
                         }
                     }
                 }
-            } }
+            }
         }
+        return null;
     }
 
 }
