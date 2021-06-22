@@ -7,12 +7,9 @@ package com.example.demo.modelo;
 
 import com.example.demo.modelo.nasa.Links;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  *
