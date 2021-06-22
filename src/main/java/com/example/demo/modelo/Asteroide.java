@@ -74,11 +74,11 @@ public class Asteroide implements Serializable, Comparable<Asteroide> {
 
     @Override
     public String toString() {
-        return "Asteroide: \n"
-                + "nombre:" + nombre
+        return "Asteroide:"
+                + "\n nombre:" + nombre
                 + "\n diametro: " + diametro
                 + "\n velocidad:" + velocidad
-                + ", fecha: " + fecha
+                + "\n fecha: " + fecha
                 + "\n planeta sobre le que orbita:" + planeta + '\n';
     }
 

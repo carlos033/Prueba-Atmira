@@ -36,7 +36,7 @@ public class Controlador {
 
     @GetMapping("/asteroids/{planeta}")
     @ResponseBody
-    public String obtenerDatosAsteroides(@PathVariable("planeta") String planeta) {
+    public List<Asteroide> obtenerDatosAsteroides(@PathVariable("planeta") String planeta) {
         List<Asteroide> listaObjetos = new ArrayList<>();
         try {
             try {
@@ -47,10 +47,6 @@ public class Controlador {
         } catch (ExcepcionServicio ex) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, ex.getMessage());
         }
-        String aux = "";
-        for (Asteroide asteroide : listaObjetos) {
-            aux += asteroide.toString();
-        }
-        return aux;
+        return listaObjetos;
     }
 }
