@@ -24,13 +24,13 @@ public class RelativeVelocity implements Serializable {
     @JsonProperty("miles_per_hour")
     private double mXH;
 
-    public RRelativeVelocitydouble kmXSeg, double kmXH, double mXH) {
+    public RelativeVelocity(double kmXSeg, double kmXH, double mXH) {
         this.kmXSeg = kmXSeg;
         this.kmXH = kmXH;
         this.mXH = mXH;
     }
 
-    public ReRelativeVelocity {
+    public RelativeVelocity() {
     }
 
     public double getKmXSeg() {
