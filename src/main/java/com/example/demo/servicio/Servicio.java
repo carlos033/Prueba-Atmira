@@ -37,10 +37,10 @@ public class Servicio implements ServicioI {
         return result;
     }
 
-    public List<NearEarthObjectsDetails> datosAsteroides(String planeta) throws ExcepcionServicio {
+    public List<Asteroide> obtenerDatosAsteroides(String planeta) throws ExcepcionServicio {
+        List<Asteroide> listaObjetos = new ArrayList<>();
         LocalDate today = LocalDate.now();
-        Map<String, List<NearEarthObjectsDetails>> listaAsteroides = new HashMap<String, List<NearEarthObjectsDetails>>();
-        List<NearEarthObjectsDetails> result = new ArrayList<>();
+        Map<String, List<NearEarthObjectsDetails>> listaAsteroides = new HashMap<>();
         DatosNasa datos = obtenerDatos();
         listaAsteroides = datos.getListaObjetos();
         for (Map.Entry<String, List<NearEarthObjectsDetails>> entry : listaAsteroides.entrySet()) {
@@ -54,9 +54,13 @@ public class Servicio implements ServicioI {
                             if (data.getCuerpoOrbital().compareToIgnoreCase(planeta) == 0) {
                                 double diametro = (item.getDiametro().getKilometros().getDiametroMax()
                                         + item.getDiametro().getKilometros().getDiametroMin()) / 2;
-                                Asteroide a = new Asteroide();
-                                a.setFecha(date);
-                                a.setDiametro(diametro);
+                                Asteroide asteroide = new Asteroide();
+                                asteroide.setFecha(date1);
+                                asteroide.setDiametro(diametro);
+                                asteroide.setNombre(item.getName());
+                                asteroide.setVelocidad(data.getVelocidades().getKmXH());
+                                asteroide.setPlaneta(planeta);
+                                listaObjetos.add(asteroide);
                             } else {
                                 throw new ExcepcionServicio("El planeta no existe o no tiene asteroides orbitando en los proximos 7 dias");
                             }

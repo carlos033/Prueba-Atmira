@@ -5,13 +5,19 @@
  */
 package com.example.demo.servicioI;
 
+import com.example.demo.errores.ExcepcionServicio;
+import com.example.demo.modelo.Asteroide;
 import com.example.demo.modelo.DatosNasa;
+import java.util.List;
 
 /**
  *
  * @author ck
  */
 public interface ServicioI {
+
     public DatosNasa obtenerDatos();
+
+    public List<Asteroide> obtenerDatosAsteroides() throws ExcepcionServicio;
 
 }
