@@ -8,7 +8,6 @@ package com.example.demo.modelo;
 import com.example.demo.modelo.nasa.CloseApproachData;
 import com.example.demo.modelo.nasa.EstimatedDiameter;
 import com.example.demo.modelo.nasa.LinkObjetos;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;

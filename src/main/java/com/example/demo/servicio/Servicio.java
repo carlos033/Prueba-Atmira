@@ -9,6 +9,7 @@ import com.example.demo.errores.ExcepcionServicio;
 import com.example.demo.modelo.Asteroide;
 import javax.transaction.Transactional;
 import com.example.demo.modelo.DatosNasa;
+import com.example.demo.modelo.nasa.CloseApproachData;
 import com.example.demo.modelo.nasa.NearEarthObjectsDetails;
 import com.example.demo.servicioI.ServicioI;
 import java.time.LocalDate;
@@ -46,7 +47,10 @@ public class Servicio implements ServicioI {
         for (Map.Entry<String, List<NearEarthObjectsDetails>> entry : listaAsteroides.entrySet()) {
             for (NearEarthObjectsDetails item : entry.getValue()) {
                 if (item.isIs_potentially_hazardous_asteroid() == true) {
-                    item.getDatosAproximacion().stream().filter(data -> (data.getCuerpoOrbital().compareToIgnoreCase(planeta) == 0)).forEachOrdered(data -> {
+                    for(CloseApproachData datosAproximacion:item.getDatosAproximacion()){
+                        if(datosAproximacion)
+                    }
+                    item.getDatosAproximacion().stream().filter(data -> (data.getCuerpoOrbital().compareToIgnoreCase(planeta) == 0)).forEachOrdered((CloseApproachData data) -> {
                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-mm-dd");
                         String date = data.getDatosAproximacion();
                         LocalDate date1 = LocalDate.parse(date, formatter);
@@ -62,17 +66,16 @@ public class Servicio implements ServicioI {
                             listaObjetos.add(asteroide);
                         }
                     });
-                    listaObjetos.sort((o1, o2) -> Double.compare(o2.getDiametro(), o1.getDiametro()));
-                    for (int i = 3; i <= listaObjetos.size(); ++i) {
-                        listaObjetos.remove(i);
+                    if (listaObjetos.isEmpty()) {
+                        throw new ExcepcionServicio("El planeta no existe o no tiene asteroides orbitando en los proximos 7 dias");
                     }
-                } else {
-                    throw new ExcepcionServicio("El planeta no existe o no tiene asteroides orbitando en los proximos 7 dias");
                 }
             }
-
+        }
+        listaObjetos.sort((o1, o2) -> Double.compare(o2.getDiametro(), o1.getDiametro()));
+        for (int i = 3; i <= listaObjetos.size(); ++i) {
+            listaObjetos.remove(i);
         }
         return listaObjetos;
     }
-
 }
