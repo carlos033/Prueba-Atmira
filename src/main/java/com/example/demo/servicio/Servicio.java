@@ -12,16 +12,15 @@ import com.example.demo.modelo.DatosNasa;
 import com.example.demo.modelo.nasa.CloseApproachData;
 import com.example.demo.modelo.nasa.NearEarthObjectsDetails;
 import com.example.demo.servicioI.ServicioI;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -33,6 +32,8 @@ import org.springframework.web.client.RestTemplate;
 @Transactional
 public class Servicio implements ServicioI {
 
+    private static final Logger logger = LogManager.getLogger(Servicio.class);
+
     @Override
     public DatosNasa obtenerDatos() {
         String hoy = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
@@ -41,6 +42,7 @@ public class Servicio implements ServicioI {
         Date hoyEn7DiasFecha = java.util.Date.from(date.atStartOfDay(ZoneId.of("Europe/Madrid")).toInstant());
         String hoyEn7Dias = new SimpleDateFormat("yyyy-MM-dd").format(hoyEn7DiasFecha);
         final String uri = "https://api.nasa.gov/neo/rest/v1/feed?start_date=" + hoy + "&end_date=" + hoyEn7Dias + "&api_key=zdUP8ElJv1cehFM0rsZVSQN7uBVxlDnu4diHlLSb";
+        logger.info("URL " + uri);
         RestTemplate restTemplate = new RestTemplate();
         DatosNasa result = restTemplate.getForObject(uri, DatosNasa.class);
         return result;
@@ -62,13 +64,22 @@ public class Servicio implements ServicioI {
                         asteroide.setPlaneta(datosAprox.getCuerpoOrbital());
                         asteroide.setVelocidad(datosAprox.getVelocidades().getKmXH());
                         asteroideList.add(asteroide);
-                    } else {
-                        throw new ExcepcionServicio("El planeta no existe o no tiene asteroides orbitando en los proximos 7 dias o ninguno es peligroso");
                     }
                 }
             }
         }
+        if (asteroideList.isEmpty()) {
+            throw new ExcepcionServicio("El planeta no existe o no tiene asteroides orbitando en los proximos 7 dias o ninguno es peligroso");
+        }
         return asteroideList;
     }
 
+    @Override
+    public List<Asteroide> listaFiltrada(List<Asteroide> lista) {
+        Collections.sort(lista);
+        if (lista.size() >= 3) {
+            lista = lista.subList(0, 3);
+        }
+        return lista;
+    }
 }

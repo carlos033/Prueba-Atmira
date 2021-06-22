@@ -12,7 +12,7 @@ import java.time.LocalDate;
  *
  * @author ck
  */
-public class Asteroide implements Serializable {
+public class Asteroide implements Serializable, Comparable<Asteroide> {
 
     private static final long serialVersionUID = 1L;
     private String nombre;
@@ -74,6 +74,20 @@ public class Asteroide implements Serializable {
 
     @Override
     public String toString() {
-        return "Asteroide{" + "nombre=" + nombre + ", diametro=" + diametro + ", velocidad=" + velocidad + ", fecha=" + fecha + ", planeta=" + planeta + '}';
+        return "Asteroide: \n"
+                + "nombre:" + nombre
+                + "\n diametro: " + diametro
+                + "\n velocidad:" + velocidad
+                + ", fecha: " + fecha
+                + "\n planeta sobre le que orbita:" + planeta + '\n';
+    }
+
+    @Override
+    public int compareTo(Asteroide o) {
+        if (getDiametro() >= o.getDiametro()) {
+            return -1;
+        } else {
+            return 1;
+        }
     }
 }

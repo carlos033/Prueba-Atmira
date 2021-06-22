@@ -21,4 +21,5 @@ public interface ServicioI {
 
     public List<Asteroide> obtenerDatosAsteroides(String planeta) throws ExcepcionServicio, ParseException;
 
+    public List<Asteroide> listaFiltrada(List<Asteroide> lista);
 }
