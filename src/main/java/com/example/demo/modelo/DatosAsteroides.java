@@ -40,23 +40,6 @@ public class DatosAsteroides implements Serializable {
     @JsonProperty("is_sentry_object")
     private boolean IsSentryObject;
 
-    @JsonCreator
-    public DatosAsteroides(LinkObjetos links, int id, String nombre, String url, double magnitudes, EstimatedDiameter diametro, boolean esPeligroso, CloseApproachData datosAproximacion, boolean IsSentryObject) {
-        this.links = links;
-        this.id = id;
-        this.nombre = nombre;
-        this.url = url;
-        this.magnitudes = magnitudes;
-        this.diametro = diametro;
-        this.esPeligroso = esPeligroso;
-        this.datosAproximacion = datosAproximacion;
-        this.IsSentryObject = IsSentryObject;
-    }
-
-    @JsonCreator
-    public DatosAsteroides() {
-    }
-
     public LinkObjetos getLinks() {
         return links;
     }

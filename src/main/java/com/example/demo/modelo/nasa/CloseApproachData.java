@@ -19,11 +19,11 @@ public class CloseApproachData implements Serializable {
 
     private static final long serialVersionUID = 7L;
     @JsonProperty("close_approach_data")
-    private Date datosAproximacion;
+    private String datosAproximacion;
     @JsonProperty("close_approach_date_full")
-    private Date datosAproximacionCompleto;
+    private String datosAproximacionCompleto;
     @JsonProperty("epoch_date_close_approach")
-    private int aproximacionCercana;
+    private long aproximacionCercana;
     @JsonProperty("relative_velocity")
     private RelativeVelocity velocidades;
     @JsonProperty("miss_distance")
@@ -31,39 +31,27 @@ public class CloseApproachData implements Serializable {
     @JsonProperty("orbiting_body")
     private String cuerpoOrbital;
 
-    public CloseApproachData(Date datosAproximacion, Date datosAproximacionCompleto, int aproximacionCercana, RelativeVelocity velocidades, MissDistance distancias, String cuerpoOrbital) {
-        this.datosAproximacion = datosAproximacion;
-        this.datosAproximacionCompleto = datosAproximacionCompleto;
-        this.aproximacionCercana = aproximacionCercana;
-        this.velocidades = velocidades;
-        this.distancias = distancias;
-        this.cuerpoOrbital = cuerpoOrbital;
-    }
-
-    public CloseApproachData() {
-    }
-
-    public Date getDatosAproximacion() {
+    public String getDatosAproximacion() {
         return datosAproximacion;
     }
 
-    public void setDatosAproximacion(Date datosAproximacion) {
+    public void setDatosAproximacion(String datosAproximacion) {
         this.datosAproximacion = datosAproximacion;
     }
 
-    public Date getDatosAproximacionCompleto() {
+    public String getDatosAproximacionCompleto() {
         return datosAproximacionCompleto;
     }
 
-    public void setDatosAproximacionCompleto(Date datosAproximacionCompleto) {
+    public void setDatosAproximacionCompleto(String datosAproximacionCompleto) {
         this.datosAproximacionCompleto = datosAproximacionCompleto;
     }
 
-    public int getAproximacionCercana() {
+    public long getAproximacionCercana() {
         return aproximacionCercana;
     }
 
-    public void setAproximacionCercana(int aproximacionCercana) {
+    public void setAproximacionCercana(long aproximacionCercana) {
         this.aproximacionCercana = aproximacionCercana;
     }
 
@@ -93,6 +81,6 @@ public class CloseApproachData implements Serializable {
 
     @Override
     public String toString() {
-        return "Close_approach_data{" + "datosAproximacion=" + datosAproximacion + ", datosAproximacionCompleto=" + datosAproximacionCompleto + ", aproximacionCercana=" + aproximacionCercana + ", velocidades=" + velocidades + ", distancias=" + distancias + ", cuerpoOrbital=" + cuerpoOrbital + '}';
+        return "CloseApproachData{" + "datosAproximacion=" + datosAproximacion + ", datosAproximacionCompleto=" + datosAproximacionCompleto + ", aproximacionCercana=" + aproximacionCercana + ", velocidades=" + velocidades + ", distancias=" + distancias + ", cuerpoOrbital=" + cuerpoOrbital + '}';
     }
 }

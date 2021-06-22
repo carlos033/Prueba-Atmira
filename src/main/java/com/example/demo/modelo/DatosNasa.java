@@ -6,10 +6,13 @@
 package com.example.demo.modelo;
 
 import com.example.demo.modelo.nasa.Links;
-import com.fasterxml.jackson.annotation.JsonCreator;
+import com.example.demo.modelo.nasa.NearEarthObjectsDetails;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -24,18 +27,7 @@ public class DatosNasa implements Serializable {
     @JsonProperty("element_count")
     private int numElementos;
     @JsonProperty("near_earth_objects")
-    private ObjetosCercanosTierra objetosCercanos;
-
-    @JsonCreator
-    public DatosNasa(Links links, int numElementos, ObjetosCercanosTierra objetosCercanos) {
-        this.links = links;
-        this.numElementos = numElementos;
-        this.objetosCercanos = objetosCercanos;
-    }
-
-    @JsonCreator
-    public DatosNasa() {
-    }
+    private Map<String, List<NearEarthObjectsDetails>> listaObjetos = new HashMap<String, List<NearEarthObjectsDetails>>();
 
     public Links getLinks() {
         return links;
@@ -53,17 +45,17 @@ public class DatosNasa implements Serializable {
         this.numElementos = numElementos;
     }
 
-    public ObjetosCercanosTierra objetosCercanos() {
-        return objetosCercanos;
+    public Map<String, List<NearEarthObjectsDetails>> getListaObjetos() {
+        return listaObjetos;
     }
 
-    public void setObjetosCercanos(ObjetosCercanosTierra objetosCercanos) {
-        this.objetosCercanos = objetosCercanos;
+    public void setListaObjetos(Map<String, List<NearEarthObjectsDetails>> listaObjetos) {
+        this.listaObjetos = listaObjetos;
     }
 
     @Override
     public String toString() {
-        return "DatosNasa{" + "links=" + links + ", element_count=" + numElementos + ", Near_earth_objects=" + objetosCercanos + '}';
+        return "DatosNasa{" + "links=" + links + ", element_count=" + numElementos + ", Near_earth_objects=" + listaObjetos + '}';
     }
 
 }

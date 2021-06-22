@@ -18,13 +18,6 @@ public class AsteroidesXFecha implements Serializable {
     @JsonProperty("datos")
     private DatosAsteroides datos;
 
-    public AsteroidesXFecha(DatosAsteroides datos) {
-        this.datos = datos;
-    }
-
-    public AsteroidesXFecha() {
-    }
-
     public DatosAsteroides getDatos() {
         return datos;
     }
