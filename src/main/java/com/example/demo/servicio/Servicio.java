@@ -25,6 +25,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 /**
+ * Servicio
  *
  * @author ck
  */
@@ -34,6 +35,11 @@ public class Servicio implements ServicioI {
 
     private static final Logger logger = LogManager.getLogger(Servicio.class);
 
+    /**
+     * Metodo para obtener los datos del EndPoint
+     *
+     * @return
+     */
     @Override
     public DatosNasa obtenerDatos() {
         String hoy = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
@@ -48,6 +54,15 @@ public class Servicio implements ServicioI {
         return result;
     }
 
+    /**
+     * Metodo que permite obtener los datos de los asteroides que orbitan a un
+     * planeta dado y que sean peligrosos
+     *
+     * @param planeta
+     * @return
+     * @throws ExcepcionServicio
+     * @throws ParseException
+     */
     @Override
     public List<Asteroide> obtenerDatosAsteroides(String planeta) throws ExcepcionServicio, ParseException {
         List<Asteroide> asteroideList = new ArrayList<>();
@@ -74,6 +89,12 @@ public class Servicio implements ServicioI {
         return asteroideList;
     }
 
+    /**
+     * Permite ordenar la lista y sacar como maximo los 3 mas grandes
+     *
+     * @param lista
+     * @return
+     */
     @Override
     public List<Asteroide> listaFiltrada(List<Asteroide> lista) {
         Collections.sort(lista);

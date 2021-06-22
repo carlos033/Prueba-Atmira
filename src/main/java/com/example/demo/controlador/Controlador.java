@@ -19,11 +19,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.server.ResponseStatusException;
 
 /**
+ * Controlador
  *
  * @author ck
  */
@@ -34,6 +34,12 @@ public class Controlador {
     @Autowired
     private ServicioI servicios;
 
+    /**
+     * Metodo para mostrar los datos obtenidos por el servicio
+     *
+     * @param planeta
+     * @return lista de asteroides
+     */
     @GetMapping("/asteroids/{planeta}")
     @ResponseBody
     public List<Asteroide> obtenerDatosAsteroides(@PathVariable("planeta") String planeta) {

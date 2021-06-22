@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
+ * Clase Asteroide con los datos pedidos
  *
  * @author ck
  */
@@ -21,6 +22,15 @@ public class Asteroide implements Serializable, Comparable<Asteroide> {
     private LocalDate fecha;
     private String planeta;
 
+    /**
+     * Constructor con parametros
+     *
+     * @param nombre
+     * @param diametro
+     * @param velocidad
+     * @param fecha
+     * @param planeta
+     */
     public Asteroide(String nombre, double diametro, double velocidad, LocalDate fecha, String planeta) {
         this.nombre = nombre;
         this.diametro = diametro;
@@ -29,6 +39,9 @@ public class Asteroide implements Serializable, Comparable<Asteroide> {
         this.planeta = planeta;
     }
 
+    /**
+     * Constructor sin parametros
+     */
     public Asteroide() {
     }
 
@@ -82,6 +95,12 @@ public class Asteroide implements Serializable, Comparable<Asteroide> {
                 + "\n planeta sobre le que orbita:" + planeta + '\n';
     }
 
+    /**
+     * Metodo para ordenar
+     *
+     * @param o
+     * @return
+     */
     @Override
     public int compareTo(Asteroide o) {
         if (getDiametro() >= o.getDiametro()) {

@@ -11,11 +11,13 @@ package com.example.demo.errores;
  */
 public class ExcepcionServicio extends Exception {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Metodo para controlar las excepciones
+     *
+     * @param msg
+     */
     public ExcepcionServicio(String msg) {
         super("Ha ocurrido una excepcion: " + msg);
     }
