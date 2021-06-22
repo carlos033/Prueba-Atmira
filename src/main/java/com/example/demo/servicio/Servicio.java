@@ -15,6 +15,8 @@ import com.example.demo.servicioI.ServicioI;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -38,9 +40,9 @@ public class Servicio implements ServicioI {
         return result;
     }
 
+    @Override
     public List<Asteroide> obtenerDatosAsteroides(String planeta) throws ExcepcionServicio {
         List<Asteroide> listaObjetos = new ArrayList<>();
-        List<Asteroide> listaResultado = new ArrayList<>();
         LocalDate today = LocalDate.now();
         Map<String, List<NearEarthObjectsDetails>> listaAsteroides = new HashMap<>();
         DatosNasa datos = obtenerDatos();
@@ -64,15 +66,17 @@ public class Servicio implements ServicioI {
                             listaObjetos.add(asteroide);
                         }
                     });
+                    listaObjetos.sort((o1, o2) -> Double.compare(o2.getDiametro(), o1.getDiametro()));
+                    for (int i = 3; i <= listaObjetos.size(); ++i) {
+                        listaObjetos.remove(i);
+                    }
                 } else {
                     throw new ExcepcionServicio("El planeta no existe o no tiene asteroides orbitando en los proximos 7 dias");
                 }
             }
 
         }
-        return listaResultado;
+        return listaObjetos;
     }
-
-   
 
 }

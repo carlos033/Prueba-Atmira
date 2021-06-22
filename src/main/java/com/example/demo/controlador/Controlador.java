@@ -5,13 +5,21 @@
  */
 package com.example.demo.controlador;
 
+import com.example.demo.errores.ExcepcionServicio;
+import com.example.demo.modelo.Asteroide;
 import com.example.demo.modelo.DatosNasa;
 import com.example.demo.servicioI.ServicioI;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.server.ResponseStatusException;
 
 /**
  *
@@ -26,7 +34,13 @@ public class Controlador {
 
     @GetMapping
     @ResponseBody
-    public DatosNasa obtenerDatos() {
-        return servicios.obtenerDatos();
+    public List<Asteroide> obtenerDatosAsteroides(String planeta) {
+        List<Asteroide> listaObjetos = new ArrayList<>();
+        try {
+            listaObjetos = servicios.obtenerDatosAsteroides(planeta);
+        } catch (ExcepcionServicio ex) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, ex.getMessage());
+        }
+        return listaObjetos;
     }
 }
