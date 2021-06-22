@@ -22,14 +22,6 @@ public class Kilometers implements Serializable {
     @JsonProperty("estimated_diameter_max")
     private double diametroMax;
 
-    public Kilometers(double diametroMin, double diametroMax) {
-        this.diametroMin = diametroMin;
-        this.diametroMax = diametroMax;
-    }
-
-    public Kilometers() {
-    }
-
     public double getDiametroMin() {
         return diametroMin;
     }

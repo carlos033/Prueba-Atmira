@@ -8,7 +8,6 @@ package com.example.demo.modelo.nasa;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  *
@@ -18,7 +17,7 @@ import java.util.Date;
 public class CloseApproachData implements Serializable {
 
     private static final long serialVersionUID = 7L;
-    @JsonProperty("close_approach_data")
+    @JsonProperty("close_approach_date")
     private String datosAproximacion;
     @JsonProperty("close_approach_date_full")
     private String datosAproximacionCompleto;
