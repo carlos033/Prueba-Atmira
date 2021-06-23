@@ -33,8 +33,6 @@ import org.springframework.web.client.RestTemplate;
 @Transactional
 public class Servicio implements ServicioI {
 
-    private static final Logger logger = LogManager.getLogger(Servicio.class);
-
     /**
      * Metodo para obtener los datos del EndPoint
      *
