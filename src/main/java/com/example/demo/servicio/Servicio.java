@@ -48,7 +48,6 @@ public class Servicio implements ServicioI {
         Date hoyEn7DiasFecha = java.util.Date.from(date.atStartOfDay(ZoneId.of("Europe/Madrid")).toInstant());
         String hoyEn7Dias = new SimpleDateFormat("yyyy-MM-dd").format(hoyEn7DiasFecha);
         final String uri = "https://api.nasa.gov/neo/rest/v1/feed?start_date=" + hoy + "&end_date=" + hoyEn7Dias + "&api_key=zdUP8ElJv1cehFM0rsZVSQN7uBVxlDnu4diHlLSb";
-        logger.info("URL " + uri);
         RestTemplate restTemplate = new RestTemplate();
         DatosNasa result = restTemplate.getForObject(uri, DatosNasa.class);
         return result;
